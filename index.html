@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>task mannager</title>
+  </head>
+  <body>
+    <form>
+      <div class="input-field">
+        <label for="name-input">Task Name</label>
+        <input type="text" id="name-input" />
+      </div>
+      <div class="input-field">
+        <label for="level-input">Difficulty Level</label>
+        <select id="level-input">
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+        </select>
+      </div>
+      <div class="input-field">
+        <label for="time-input">estimated time</label
+        ><input id="time-input" type="number" /> min/s
+      </div>
+      <div class="input-field">
+        <input type="submit" class="submit-btn" value="Submit" />
+      </div>
+    </form>
+    <div class="tasks-container"></div>
+
+    <div class="statistics">
+      <p>total tasks: 0</p>
+      <p>completed tasks: 0</p>
+      <p>remaining tasks: 0</p>
+      <p>total planned minutes: 0</p>
+    </div>
+    <button class="reset-all">Reset All</button>
+
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
