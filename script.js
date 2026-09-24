@@ -24,6 +24,12 @@ function updateTasksContainer() {
       arr = tasks.filter((task) => task.status === false);
       break;
   }
+  if (arr.length === 0) {
+    tasksContainer.innerHTML = `No ${section !== "all" ? section : ""} Tasks Here.`;
+    tasksContainer.classList.add("empty");
+    return;
+  }
+  tasksContainer.classList.remove("empty");
   arr.forEach((task) => {
     html += `
       <div class="task">
@@ -31,8 +37,8 @@ function updateTasksContainer() {
         <span class="task-time">${task.time} min/s</span>
         <span class="task-status ${task.status ? "completed" : "pending"}">${task.status ? "Completed" : "Pending"}</span>
         <span class="task-level"> ${task.level}</span>
-        <button data-task-id="${task.id}" class="complete-task-btn">complete</button>
-        <button data-task-id="${task.id}" class="delete-task-btn">delete</button>
+        <button data-task-id="${task.id}" class="complete-task-btn">Complete</button>
+        <button data-task-id="${task.id}" class="delete-task-btn">Delete</button>
       </div>`;
   });
   tasksContainer.innerHTML = html;
@@ -51,7 +57,7 @@ function updateStatistics() {
           <span>${completedTasks}</span>
         </div>
         <div>
-          <p>Remaining</p>
+          <p>Pending</p>
           <span>${remainingTasks}</span>
         </div>
         <div>
@@ -71,6 +77,7 @@ function addEListeners() {
       });
       updateTasksContainer();
       updateStatistics();
+      localStorage.setItem("tasks", JSON.stringify(tasks));
     });
   });
   document.querySelectorAll(".delete-task-btn").forEach((btn) => {
@@ -83,6 +90,7 @@ function addEListeners() {
       });
       updateTasksContainer();
       updateStatistics();
+      localStorage.setItem("tasks", JSON.stringify(tasks));
     });
   });
 }
@@ -112,12 +120,13 @@ function loadPage() {
     timeInput.value = "";
     updateTasksContainer();
     updateStatistics();
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   });
 
   filter.addEventListener("click", (event) => {
     switch (event.target.dataset.filter) {
       case "all":
-        section = 'all';
+        section = "all";
         break;
       case "completed":
         section = "completed";
@@ -135,6 +144,7 @@ function loadPage() {
     timeInput.value = "";
     updateTasksContainer();
     updateStatistics();
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   });
 }
 
