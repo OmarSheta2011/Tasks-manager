@@ -8,11 +8,14 @@
 
 :root {
   font-size: 62.5%;
+
+  --special-clr: azure;
 }
 
 body {
-  min-height: 100dvh;
+  min-height: 100vh;
   min-width: 100vw;
+  max-width: 100vw;
   font-size: 1.6rem;
   display: grid;
   grid-template-areas:
@@ -20,7 +23,7 @@ body {
     "statistics tasks";
   grid-template-columns: 350px 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 10px;
+  gap: 3px;
 }
 
 form {
@@ -58,6 +61,8 @@ form {
   min-width: 200px;
   max-width: 200px;
   padding: 0.6rem 1rem;
+  background-color: var(--special-clr);
+  border: 1px solid;
 }
 
 .submit-btn,
@@ -65,6 +70,7 @@ form {
   padding: 0.8rem 1.6rem;
   border-radius: 4px;
   cursor: pointer;
+  background-color: var(--special-clr);
 }
 
 .statistics {
@@ -89,6 +95,8 @@ form {
   gap: 1rem;
   background-color: lightgray;
   min-height: 300px;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .task {
@@ -97,7 +105,7 @@ form {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: azure;
+  background-color: var(--special-clr);
   padding: 2rem;
   border-radius: 5px;
   font-weight: 700;
@@ -135,7 +143,7 @@ form {
       "tasks";
 
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr auto;
   }
 }
 

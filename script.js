@@ -74,7 +74,6 @@ function addEListeners() {
 }
 
 function loadPage() {
-  // -------------------------------------------------------
   updateTasksContainer();
   updateStatistics();
 
@@ -110,4 +109,5 @@ function loadPage() {
     updateStatistics();
   });
 }
+
 loadPage();

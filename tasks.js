@@ -7,5 +7,5 @@ export function calculateStatiscs() {
     if (task.status === true) completedTasks++;
     totalMinutes += task.time;
   });
-  return [completedTasks, tasks.length - completedTasks, totalMinutes ];
+  return [completedTasks, tasks.length - completedTasks, totalMinutes];
 }
