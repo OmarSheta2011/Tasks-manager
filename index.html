@@ -21,22 +21,35 @@
         </select>
       </div>
       <div class="input-field">
-        <label for="time-input">estimated time</label
-        ><input id="time-input" type="number" /> min/s
+        <label for="time-input">estimated minutes</label
+        ><input id="time-input" type="number" />
       </div>
-      <div class="input-field">
-        <input type="submit" class="submit-btn" value="Submit" />
-      </div>
+      <input type="submit" class="submit-btn" value="Submit" />
     </form>
-    <div class="tasks-container"></div>
 
-    <div class="statistics">
-      <p>total tasks: 0</p>
-      <p>completed tasks: 0</p>
-      <p>remaining tasks: 0</p>
-      <p>total planned minutes: 0</p>
+    <div class="statistics-wraper">
+      <div class="statistics">
+        <div>
+          <p>total tasks:</p>
+          <span>0</span>
+        </div>
+        <div>
+          <p>completed tasks: 0</p>
+          <span>0</span>
+        </div>
+        <div>
+          <p>remaining tasks: 0</p>
+          <span>0</span>
+        </div>
+        <div>
+          <p>total planned minutes: 0</p>
+          <span>0</span>
+        </div>
+      </div>
+      <button class="reset-all">Reset All</button>
     </div>
-    <button class="reset-all">Reset All</button>
+
+    <div class="tasks-container"></div>
 
     <script src="script.js" type="module"></script>
   </body>

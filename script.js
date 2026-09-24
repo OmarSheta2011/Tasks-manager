@@ -14,11 +14,12 @@ function updateTasksContainer() {
     html += `
       <div class="task">
         <p class="task-name">${task.name}</p>
-        <span class="task-time">${task.time}</span>
-        <span class="task-status">${task.status}</span>
+        <span class="task-time">${task.time} min/s</span>
+        <span class="task-status ${task.status ? "done" : "not-done"}">${task.status ? "Done" : "Not Done"}</span>
+        <span class="task-level"> ${task.level}</span>
         <button data-task-id="${task.id}" class="complete-task-btn">complete</button>
         <button data-task-id="${task.id}" class="delete-task-btn">delete</button>
-      <div/>`;
+      </div>`;
   });
   tasksContainer.innerHTML = html;
   addEListeners();
@@ -27,10 +28,21 @@ function updateTasksContainer() {
 function updateStatistics() {
   const [completedTasks, remainingTasks, totalMinutes] = calculateStatiscs();
   statisticsContainer.innerHTML = `
-      <p>total tasks: ${tasks.length}</p>
-      <p>completed tasks:${completedTasks}</p>
-      <p>remaining tasks:${remainingTasks}</p>
-      <p>total planned minutes:${totalMinutes}</p>
+        <div>
+          <p>Total</p>
+          <span>${tasks.length}</span>
+        </div>
+        <div>
+          <p>Completed</p>
+          <span>${completedTasks}</span>
+        </div>
+        <div>
+          <p>Remaining</p>
+          <span>${remainingTasks}</span>
+        </div>
+        <div>
+          <p>Minutes</p>
+          <span>${totalMinutes}</span>
     `;
 }
 
@@ -43,6 +55,7 @@ function addEListeners() {
           task.status = true;
         }
       });
+      updateTasksContainer();
       updateStatistics();
     });
   });
@@ -58,11 +71,6 @@ function addEListeners() {
       updateStatistics();
     });
   });
-  document.querySelector(".reset-all").addEventListener('click', () => {
-    tasks.length = 0;
-    updateTasksContainer()
-    updateStatistics();
-  })
 }
 
 function loadPage() {
@@ -90,6 +98,14 @@ function loadPage() {
     nameInput.value = "";
     timeInput.value = "";
 
+    updateTasksContainer();
+    updateStatistics();
+  });
+
+  document.querySelector(".reset-all").addEventListener("click", () => {
+    tasks.length = 0;
+    nameInput.value = "";
+    timeInput.value = "";
     updateTasksContainer();
     updateStatistics();
   });
