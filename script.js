@@ -6,16 +6,30 @@ const timeInput = document.querySelector("#time-input");
 const submitBtn = document.querySelector(".submit-btn");
 const tasksContainer = document.querySelector(".tasks-container");
 const statisticsContainer = document.querySelector(".statistics");
+const filter = document.querySelector(".filter");
 // ------------------------------------
+let section = "all";
 
 function updateTasksContainer() {
   let html = "";
-  tasks.forEach((task) => {
+  let arr;
+  switch (section) {
+    case "all":
+      arr = [...tasks];
+      break;
+    case "completed":
+      arr = tasks.filter((task) => task.status === true);
+      break;
+    case "pending":
+      arr = tasks.filter((task) => task.status === false);
+      break;
+  }
+  arr.forEach((task) => {
     html += `
       <div class="task">
         <p class="task-name">${task.name}</p>
         <span class="task-time">${task.time} min/s</span>
-        <span class="task-status ${task.status ? "done" : "not-done"}">${task.status ? "Done" : "Not Done"}</span>
+        <span class="task-status ${task.status ? "completed" : "pending"}">${task.status ? "Completed" : "Pending"}</span>
         <span class="task-level"> ${task.level}</span>
         <button data-task-id="${task.id}" class="complete-task-btn">complete</button>
         <button data-task-id="${task.id}" class="delete-task-btn">delete</button>
@@ -96,9 +110,23 @@ function loadPage() {
     });
     nameInput.value = "";
     timeInput.value = "";
-
     updateTasksContainer();
     updateStatistics();
+  });
+
+  filter.addEventListener("click", (event) => {
+    switch (event.target.dataset.filter) {
+      case "all":
+        section = 'all';
+        break;
+      case "completed":
+        section = "completed";
+        break;
+      case "pending":
+        section = "pending";
+        break;
+    }
+    updateTasksContainer();
   });
 
   document.querySelector(".reset-all").addEventListener("click", () => {
