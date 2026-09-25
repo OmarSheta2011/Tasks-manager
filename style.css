@@ -119,13 +119,18 @@ form {
   background-color: li;
 }
 
-.filter > span {
+.filter span {
   padding: 10px;
   background-color: var(--special-clr);
   flex: 1;
-  /* border-radius: 999px; */
+  border-radius: 5px;
   cursor: pointer;
   text-align: center;
+}
+
+.filter .selected {
+  transition: .3s;
+  background-color:bisque;
 }
 
 .task {
@@ -146,7 +151,7 @@ form {
   padding: 0.8rem 1.2rem;
   border-radius: 5px;
   border: none;
-  color: azure;
+  color: var(--special-clr);
   font-weight: 700;
   cursor: pointer;
 }

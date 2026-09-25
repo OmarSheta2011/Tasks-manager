@@ -135,6 +135,8 @@ function loadPage() {
         section = "pending";
         break;
     }
+    document.querySelector(".selected").classList.remove("selected");
+    document.querySelector(`.${section}`).classList.add("selected");
     updateTasksContainer();
   });
 
