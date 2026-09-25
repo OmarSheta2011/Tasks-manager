@@ -37,7 +37,7 @@ function updateTasksContainer() {
         <span class="task-time">${task.time} min/s</span>
         <span class="task-status ${task.status ? "completed" : "pending"}">${task.status ? "Completed" : "Pending"}</span>
         <span class="task-level"> ${task.level}</span>
-        <button data-task-id="${task.id}" class="complete-task-btn">Complete</button>
+        ${task.status === false ? `<button data-task-id="${task.id}" class="complete-task-btn">Complete</button>` : `<button data-task-id="${task.id}" class="complete-task-btn pend">Incomplete</button>`}
         <button data-task-id="${task.id}" class="delete-task-btn">Delete</button>
       </div>`;
   });
@@ -72,7 +72,7 @@ function addEListeners() {
       const { taskId } = btn.dataset;
       tasks.forEach((task) => {
         if (task.id === taskId) {
-          task.status = true;
+          task.status = !task.status;
         }
       });
       updateTasksContainer();
